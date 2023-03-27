@@ -50,22 +50,22 @@ public class MovieRepository {
     }
 
 
-    public List<Movie> getMoviesByDirectorName(String director) {
-        List<Movie> list = new ArrayList<>();
+    public List<String> getMoviesByDirectorName(String director) {
+        List<String> list = new ArrayList<>();
 
         for(Movie m : movieDirector.keySet()){
             if((movieDirector.get(m).getName()).equals(director)){
-                list.add(m);
+                list.add(m.getName());
             }
         }
         return list;
     }
 
-    public List<Movie> findAllMovies() {
-        List<Movie> list = new ArrayList<>();
+    public List<String> findAllMovies() {
+        List<String> list = new ArrayList<>();
 
         for(String s : movieList.keySet()){
-            list.add(movieList.get(s));
+            list.add(s);
         }
         return list;
     }

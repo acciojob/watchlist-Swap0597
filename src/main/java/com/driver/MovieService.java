@@ -40,14 +40,14 @@ public class MovieService {
         return director;
     }
 
-    public List<Movie> getMoviesByDirectorName(String director) {
-        List<Movie> list = movieRepository.getMoviesByDirectorName(director);
+    public List<String> getMoviesByDirectorName(String director) {
+        List<String> list = movieRepository.getMoviesByDirectorName(director);
         return list;
     }
 
-    public List<Movie> findAllMovies() {
+    public List<String> findAllMovies() {
 
-        List<Movie> list = movieRepository.findAllMovies();
+        List<String> list = movieRepository.findAllMovies();
         return list;
     }
 
