@@ -2,10 +2,7 @@ package com.driver;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class MovieRepository {
@@ -71,30 +68,49 @@ public class MovieRepository {
     }
 
     public String deleteDirectorByName(String name) {
+        directorList.remove(name);
 
-        for(Movie m : movieDirector.keySet()){
-            if((movieDirector.get(m).getName()).equals(name)){
-                movieList.remove(m.getName());
-                //removeMovieFromMovieList(m.getName());
-                movieDirector.remove(m);
+        Iterator<Map.Entry<Movie, Director>> itr = movieDirector.entrySet().iterator();
+        while(itr.hasNext()){
+            Map.Entry<Movie, Director> entry = itr.next();
+            if(entry.getValue().getName().equals(name)){
+                movieList.remove(entry.getKey().getName());
+                itr.remove();
             }
         }
-        directorList.remove(name);
+
+//        for(Movie m : movieDirector.keySet()){
+//            if((movieDirector.get(m).getName()).equals(name)){
+//                movieList.remove(m.getName());
+//                //removeMovieFromMovieList(m.getName());
+//                movieDirector.remove(m);
+//            }
+//        }
+//        directorList.remove(name);
         return "Director and Movie removed Successfully";
     }
 
     public String deleteAllDirectors() {
-        for(String dName : directorList.keySet())
-        {
-            for(Movie m : movieDirector.keySet())
-            {
-                if((movieDirector.get(m).getName()).equals(dName)){
-                    //removeMovieFromMovieList(m.getName());
-                    movieList.remove(m.getName());
-                    movieDirector.remove(m);
-                }
-            }
-            directorList.remove(dName);
+//        for(String dName : directorList.keySet())
+//        {
+//            for(Movie m : movieDirector.keySet())
+//            {
+//                if((movieDirector.get(m).getName()).equals(dName)){
+//                    //removeMovieFromMovieList(m.getName());
+//                    movieList.remove(m.getName());
+//                    movieDirector.remove(m);
+//                }
+//            }
+//            directorList.remove(dName);
+//        }
+
+
+        Iterator<Map.Entry<Movie, Director>> itr = movieDirector.entrySet().iterator();
+        while(itr.hasNext()){
+            Map.Entry<Movie, Director> entry = itr.next();
+            directorList.remove(entry.getValue().getName());
+            movieList.remove(entry.getKey().getName());
+            itr.remove();
         }
 
         return "All Record Deleted";
